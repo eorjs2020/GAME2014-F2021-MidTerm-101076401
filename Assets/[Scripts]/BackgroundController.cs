@@ -37,7 +37,7 @@ public class BackgroundController : MonoBehaviour
                     {
                         Vector2 temp1 = transform.position;
                         transform.position = new Vector3(temp1.y, 0);
-                        Debug.Log("pToL");
+                        
                     }
                     orientation = Screen.orientation;
                     break;
@@ -48,7 +48,7 @@ public class BackgroundController : MonoBehaviour
                     {
                         Vector2 temp2 = transform.position;
                         transform.position = new Vector3(0, temp2.x);
-                        Debug.Log("lToP");
+                        
                     }
                     
                     orientation = Screen.orientation;
@@ -63,8 +63,7 @@ public class BackgroundController : MonoBehaviour
     {        
         switch(Screen.orientation)
         {
-            case ScreenOrientation.LandscapeLeft:
-                // change code to vertical to horizontal and x and y       
+            case ScreenOrientation.LandscapeLeft:                
             case ScreenOrientation.LandscapeRight:
                 transform.position = new Vector3(horizontalBoundary, 0.0f);
                 break;
@@ -72,8 +71,7 @@ public class BackgroundController : MonoBehaviour
             case ScreenOrientation.PortraitUpsideDown:
                 transform.position = new Vector3(0.0f, horizontalBoundary);
                 break;
-        }
-        
+        }        
     }
 
     private void _Move()
@@ -89,7 +87,6 @@ public class BackgroundController : MonoBehaviour
             case ScreenOrientation.PortraitUpsideDown:
                 transform.position -= new Vector3(0.0f, horizontalSpeed) * Time.deltaTime;
                 break;
-
         }
     }
 
@@ -113,7 +110,7 @@ public class BackgroundController : MonoBehaviour
                 }
                 break;
             case ScreenOrientation.PortraitUpsideDown:
-                if (transform.position.x <= -horizontalBoundary)
+                if (transform.position.y <= -horizontalBoundary)
                 {
                     _Reset();
                 }

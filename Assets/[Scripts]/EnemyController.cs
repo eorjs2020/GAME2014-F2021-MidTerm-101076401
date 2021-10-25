@@ -90,6 +90,7 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
                 if (transform.position.x >= horizontalBoundary)
                 {
                     direction = -1.0f;

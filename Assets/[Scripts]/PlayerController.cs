@@ -209,6 +209,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
                 // check right bounds
                 if (transform.position.x >= horizontalBoundary)
                 {

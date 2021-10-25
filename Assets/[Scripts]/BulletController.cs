@@ -62,7 +62,6 @@ public class BulletController : MonoBehaviour, IApplyDamage
 
     private void _Move()
     {
-
         // Moving Change by Screen.orientation
         switch (Screen.orientation)
         {
