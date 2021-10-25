@@ -1,35 +1,124 @@
-﻿using System.Collections;
+﻿/*
+ *Full Name        : Daekoen Lee 
+ *Student ID       : 101076401
+ *Date Modified    : October 24, 2021
+ *File             : BackgroundController.cs
+ *Description      : This is Controller Script - it controls the motion of Scrolling Backround
+ *
+ *Revision History :
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
 {
-    public float verticalSpeed;
-    public float verticalBoundary;
-
+    public float horizontalSpeed;
+    public float horizontalBoundary;
+    private ScreenOrientation orientation;
+    private Vector3 originalP;
     // Update is called once per frame
+    private void Start()
+    {
+        orientation = Screen.orientation;        
+    }
     void Update()
     {
+        // check Orientation and if there is change orientation change position to Right Position
+        if (orientation != Screen.orientation)
+        {
+            switch(orientation)
+            {
+                case ScreenOrientation.LandscapeLeft:                     
+                case ScreenOrientation.LandscapeRight:
+                    if (orientation == ScreenOrientation.Portrait)
+                    {
+                        Vector2 temp1 = transform.position;
+                        transform.position = new Vector3(temp1.y, 0);
+                        Debug.Log("pToL");
+                    }
+                    orientation = Screen.orientation;
+                    break;
+                case ScreenOrientation.Portrait:
+                    if (orientation == ScreenOrientation.LandscapeLeft 
+                        || orientation == ScreenOrientation.LandscapeRight)
+                    {
+                        Vector2 temp2 = transform.position;
+                        transform.position = new Vector3(0, temp2.x);
+                        Debug.Log("lToP");
+                    }
+                    
+                    orientation = Screen.orientation;
+                    break;
+            }
+        }
         _Move();
         _CheckBounds();
     }
 
     private void _Reset()
-    {
-        transform.position = new Vector3(0.0f, verticalBoundary);
+    {        
+        switch(Screen.orientation)
+        {
+            case ScreenOrientation.LandscapeLeft:
+                // change code to vertical to horizontal and x and y       
+            case ScreenOrientation.LandscapeRight:
+                transform.position = new Vector3(horizontalBoundary, 0.0f);
+                break;
+            case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
+                transform.position = new Vector3(0.0f, horizontalBoundary);
+                break;
+        }
+        
     }
 
     private void _Move()
     {
-        transform.position -= new Vector3(0.0f, verticalSpeed) * Time.deltaTime;
+        // Moving Change by Screen.orientation
+        switch (Screen.orientation)
+        {
+            case ScreenOrientation.LandscapeLeft:                
+            case ScreenOrientation.LandscapeRight:                
+                transform.position -= new Vector3(horizontalSpeed, 0.0f) * Time.deltaTime;
+                break;
+            case ScreenOrientation.Portrait:                
+            case ScreenOrientation.PortraitUpsideDown:
+                transform.position -= new Vector3(0.0f, horizontalSpeed) * Time.deltaTime;
+                break;
+
+        }
     }
 
     private void _CheckBounds()
     {
-        // if the background is lower than the bottom of the screen then reset
-        if (transform.position.y <= -verticalBoundary)
+        //CheckBounds Change by Screen.orientation 
+        switch (Screen.orientation)
         {
-            _Reset();
+            case ScreenOrientation.LandscapeLeft:                              
+            case ScreenOrientation.LandscapeRight:
+                // change y to x  
+                if (transform.position.x <= -horizontalBoundary)
+                {                    
+                    _Reset();
+                }
+                break;
+            case ScreenOrientation.Portrait:
+                if (transform.position.y <= -horizontalBoundary)
+                {
+                    _Reset();
+                }
+                break;
+            case ScreenOrientation.PortraitUpsideDown:
+                if (transform.position.x <= -horizontalBoundary)
+                {
+                    _Reset();
+                }
+                break;
+
         }
+        // if the background is lower than the bottom of the screen then reset
+        
     }
 }

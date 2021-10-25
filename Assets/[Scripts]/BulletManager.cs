@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+ *Full Name        : Daekoen Lee 
+ *Student ID       : 101076401
+ *Date Modified    : October 24, 2021
+ *File             : BulletManager.cs
+ *Description      : This is Manager Script - it manage the bullet pool.
+ *
+ *Revision History :
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +34,7 @@ public class BulletManager : MonoBehaviour
         for (int count = 0; count < MaxBullets; count++)
         {
             var tempBullet = bulletFactory.createBullet();
+            tempBullet.transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
             m_bulletPool.Enqueue(tempBullet);
         }
     }
@@ -34,6 +44,18 @@ public class BulletManager : MonoBehaviour
         var newBullet = m_bulletPool.Dequeue();
         newBullet.SetActive(true);
         newBullet.transform.position = position;
+        // Bullet Angle change by Screen.orientation
+        switch (Screen.orientation)
+        {
+            case ScreenOrientation.LandscapeLeft:                   
+            case ScreenOrientation.LandscapeRight:
+                newBullet.transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
+                break;
+            case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
+                newBullet.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                break;
+        }
         return newBullet;
     }
 
