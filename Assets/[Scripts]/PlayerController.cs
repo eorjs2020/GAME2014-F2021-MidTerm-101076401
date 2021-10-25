@@ -5,7 +5,7 @@
  *File             : PlayerController.cs
  *Description      : This is Controller Script - it controls the Player moving
  *
- *Revision History :
+ *Revision History : Changed player position and moving to work in Both Orientation
  */
 
 using System.Collections;

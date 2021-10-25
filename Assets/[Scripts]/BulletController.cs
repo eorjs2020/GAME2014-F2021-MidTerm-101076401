@@ -5,7 +5,7 @@
  *File             : BulletController.cs
  *Description      : This is Controller Script - it controls the Bullet moving
  *
- *Revision History :
+ *Revision History : Changed Bullet Moving to work in Both Orientation
  */
 
 using System.Collections;

@@ -5,7 +5,7 @@
  *File             : EnemyController.cs
  *Description      : This is Controller Script - it controls the Enemy moving
  *
- *Revision History :
+ *Revision History : Changed Enemy moving and boundery to work in Both Orientation
  */
 
 using System.Collections;

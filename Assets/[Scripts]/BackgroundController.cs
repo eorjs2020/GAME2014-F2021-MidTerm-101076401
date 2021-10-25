@@ -5,7 +5,7 @@
  *File             : BackgroundController.cs
  *Description      : This is Controller Script - it controls the motion of Scrolling Backround
  *
- *Revision History :
+ *Revision History : Changed Backgournd to work in Both Orientation
  */
 
 using System.Collections;

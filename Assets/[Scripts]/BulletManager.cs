@@ -5,7 +5,7 @@
  *File             : BulletManager.cs
  *Description      : This is Manager Script - it manage the bullet pool.
  *
- *Revision History :
+ *Revision History : Changed Bullet angle to work in Both Orientation
  */
 using System.Collections;
 using System.Collections.Generic;
