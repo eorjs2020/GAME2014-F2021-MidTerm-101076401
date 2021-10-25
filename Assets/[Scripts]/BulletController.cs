@@ -36,7 +36,8 @@ public class BulletController : MonoBehaviour, IApplyDamage
             {
                 case ScreenOrientation.LandscapeLeft:
                 case ScreenOrientation.LandscapeRight:
-                    if (orientation == ScreenOrientation.Portrait)
+                    if (orientation == ScreenOrientation.Portrait ||
+                        orientation == ScreenOrientation.PortraitUpsideDown)
                     {
                         Vector2 temp1 = transform.position;
                         transform.position = new Vector3(temp1.y, temp1.x);                        
@@ -44,6 +45,7 @@ public class BulletController : MonoBehaviour, IApplyDamage
                     orientation = Screen.orientation;
                     break;
                 case ScreenOrientation.Portrait:
+                case ScreenOrientation.PortraitUpsideDown:
                     if (orientation == ScreenOrientation.LandscapeLeft
                         || orientation == ScreenOrientation.LandscapeRight)
                     {
@@ -69,6 +71,7 @@ public class BulletController : MonoBehaviour, IApplyDamage
                 transform.position += new Vector3(horizontalSpeed, 0.0f, 0.0f) * Time.deltaTime;
                 break;
             case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
                 transform.position += new Vector3(0.0f, horizontalSpeed, 0.0f) * Time.deltaTime;
                 break;
         }
@@ -88,6 +91,7 @@ public class BulletController : MonoBehaviour, IApplyDamage
                 }
                 break;
             case ScreenOrientation.Portrait:
+            case ScreenOrientation.PortraitUpsideDown:
                 if (transform.position.y > horizontalBoundary)
                 {
                     bulletManager.ReturnBullet(gameObject);

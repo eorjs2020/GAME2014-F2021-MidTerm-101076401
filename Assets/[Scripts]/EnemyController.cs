@@ -31,7 +31,8 @@ public class EnemyController : MonoBehaviour
             {
                 case ScreenOrientation.LandscapeLeft:
                 case ScreenOrientation.LandscapeRight:
-                    if (orientation == ScreenOrientation.Portrait)
+                    if (orientation == ScreenOrientation.Portrait ||
+                        orientation == ScreenOrientation.PortraitUpsideDown)
                     {
                         Vector2 temp1 = transform.position;
                         transform.position = new Vector3(temp1.y, temp1.x);
@@ -39,6 +40,7 @@ public class EnemyController : MonoBehaviour
                     orientation = Screen.orientation;
                     break;
                 case ScreenOrientation.Portrait:
+                case ScreenOrientation.PortraitUpsideDown:
                     if (orientation == ScreenOrientation.LandscapeLeft
                         || orientation == ScreenOrientation.LandscapeRight)
                     {
